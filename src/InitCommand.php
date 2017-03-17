@@ -12,7 +12,7 @@ class InitCommand extends Command
     {
         $this
             ->setName('init')
-            ->setDescription('Create empty'.self::FILENAME.' configuration file');
+            ->setDescription('Create empty '.self::FILENAME.' configuration file');
     }
 
     protected function initialize(InputInterface $input, OutputInterface $output)
