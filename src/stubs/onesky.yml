@@ -1,0 +1,4 @@
+key: <api-key>
+secret: <api-secret>
+project_id: <project-id>
+file_format: HIERARCHICAL_JSON
