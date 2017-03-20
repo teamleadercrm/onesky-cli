@@ -18,5 +18,11 @@
         "psr-4": {
             "Teamleader\\OneSky\\": "src/"
         }
+    },
+    "require-dev": {
+        "kherge/box": "^2.7"
+    },
+    "scripts": {
+        "build": "./vendor/bin/box build"
     }
 }

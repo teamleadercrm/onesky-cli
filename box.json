@@ -1,0 +1,25 @@
+{
+  "alias": "onesky.phar",
+  "chmod": "0755",
+  "directories": ["src"],
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "bin",
+        "doctrine",
+        "justinrainbow",
+        "kherge",
+        "psr",
+        "phine",
+        "seld",
+        "tedivm"
+      ],
+      "in": "vendor"
+    }
+  ],
+  "git-version": "package_version",
+  "main": "bin/onesky",
+  "output": "onesky.phar",
+  "stub": true
+}
