@@ -2,3 +2,4 @@ key: <api-key>
 secret: <api-secret>
 project_id: <project-id>
 file_format: HIERARCHICAL_JSON
+is_keeping_all_strings: true

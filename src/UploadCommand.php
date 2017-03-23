@@ -22,8 +22,9 @@ class UploadCommand extends Command
         $response = $this->client->files('upload', [
             'project_id' => (int) $this->config['project_id'],
             'file' => $input->getArgument('file'),
-            'file_format' => $this->config['file_format'] ?: 'HIERARCHICAL_JSON',
+            'file_format' => $this->config['file_format'],
             'locale' => $input->getArgument('locale'),
+            'is_keeping_all_strings' => $this->config['is_keeping_all_strings'],
         ]);
 
         $data = json_decode($response, true);

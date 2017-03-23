@@ -2,7 +2,6 @@
 
 namespace Teamleader\OneSky;
 
-use Exception;
 use Onesky\Api\Client;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,7 +29,12 @@ abstract class Command extends BaseCommand
             return;
         }
 
-        $this->config = Yaml::parse(file_get_contents(self::FILENAME));
+        $defaults = [
+            'file_format' => 'HIERARCHICAL_JSON',
+            'is_keeping_all_strings' => true,
+        ];
+
+        $this->config = array_merge($defaults, Yaml::parse(file_get_contents(self::FILENAME)));
 
         $this->client = new Client();
         $this->client
