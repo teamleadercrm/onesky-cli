@@ -3,13 +3,13 @@
 Install globally:
 
 ```bash
-composer global install teamleader/onesky-cli
+composer global require teamleader/onesky-cli
 ```
 
 Or install locally:
 
 ```bash
-composer install teamleader/onesky-cli
+composer require teamleader/onesky-cli
 ```
 
 ## Configuration
