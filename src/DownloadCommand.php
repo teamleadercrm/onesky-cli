@@ -20,8 +20,15 @@ class DownloadCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+		$this->initializeClient($input->getOption('key'), $input->getOption('secret'));
+
+		$project_id = $this->config['project_id'];
+		if ($input->getOption('project_id')) {
+			$project_id = $this->config['project_id'];
+		}
+
         $response = $this->client->translations('export', [
-            'project_id' => (int) $this->config['project_id'],
+            'project_id' => (int) $project_id,
             'locale' => $input->getArgument('locale'),
             'source_file_name' => $input->getArgument('source_file_name'),
         ]);
