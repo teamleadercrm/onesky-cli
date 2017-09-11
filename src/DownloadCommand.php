@@ -10,6 +10,7 @@ class DownloadCommand extends Command
 {
     protected function configure()
     {
+		parent::configure();
         $this
             ->setName('download')
             ->setDescription('Download a translation file from OneSky')
