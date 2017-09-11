@@ -14,17 +14,30 @@ class UploadCommand extends Command
             ->setName('upload')
             ->setDescription('Upload a translation file to OneSky')
             ->addArgument('locale', InputArgument::REQUIRED, 'Locale')
-            ->addArgument('file', InputArgument::REQUIRED, 'File');
+            ->addArgument('file', InputArgument::REQUIRED, 'File')
+			->addOption('file_format', 'f', InputArgument::OPTIONAL, 'A file type from this list: https://support.oneskyapp.com/hc/en-us/articles/205978508-File-formats-that-OneSky-supports. Defaults to the value in the onesky.yml file', $this->config['file_format'])
+			->addOption('is_keeping_all_strings', 'k', InputArgument::OPTIONAL, 'Whether to remove strings no longer in the uploaded file. Defaults to the value in the onesky.yml file', $this->config['is_keeping_all_strings']);
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+    	$file_format = $this->config['file_format'];
+		if ($input->getOption('file_format')) {
+			$file_format = $this->config['file_format'];
+		}
+
+		$is_keeping_all_strings = $this->config['is_keeping_all_strings'];
+		if ($input->getOption('is_keeping_all_strings')) {
+			$is_keeping_all_strings = $this->config['is_keeping_all_strings'];
+		}
+
         $response = $this->client->files('upload', [
             'project_id' => (int) $this->config['project_id'],
             'file' => $input->getArgument('file'),
-            'file_format' => $this->config['file_format'],
+            'file_format' => $file_format,
             'locale' => $input->getArgument('locale'),
-            'is_keeping_all_strings' => $this->config['is_keeping_all_strings'],
+            'is_keeping_all_strings' => $is_keeping_all_strings,
         ]);
 
         $data = json_decode($response, true);
