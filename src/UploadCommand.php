@@ -15,8 +15,8 @@ class UploadCommand extends Command
             ->setDescription('Upload a translation file to OneSky')
             ->addArgument('locale', InputArgument::REQUIRED, 'Locale')
             ->addArgument('file', InputArgument::REQUIRED, 'File')
-			->addOption('file_format', 'f', InputArgument::OPTIONAL, 'A file type from this list: https://support.oneskyapp.com/hc/en-us/articles/205978508-File-formats-that-OneSky-supports. Defaults to the value in the onesky.yml file', $this->config['file_format'])
-			->addOption('is_keeping_all_strings', 'k', InputArgument::OPTIONAL, 'Whether to remove strings no longer in the uploaded file. Defaults to the value in the onesky.yml file', $this->config['is_keeping_all_strings']);
+			->addOption('file_format', 'f', InputArgument::OPTIONAL, 'A file type from this list: https://support.oneskyapp.com/hc/en-us/articles/205978508-File-formats-that-OneSky-supports. Defaults to the value in the onesky.yml file')
+			->addOption('is_keeping_all_strings', 'k', InputArgument::OPTIONAL, 'Whether to remove strings no longer in the uploaded file. Defaults to the value in the onesky.yml file');
 
     }
 
