@@ -10,6 +10,10 @@ class PhpTranslationFileIoStrategy implements TranslationFileIoStrategy
      */
     public function readFile($file)
     {
+        if (! file_exists($file)) {
+            return [];
+        }
+
         return include $file;
     }
 
