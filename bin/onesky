@@ -16,4 +16,5 @@ $application = new Application();
 $application->add(new Teamleader\OneSky\InitCommand());
 $application->add(new Teamleader\OneSky\UploadCommand());
 $application->add(new Teamleader\OneSky\DownloadCommand());
+$application->add(new Teamleader\OneSky\MergeCommand());
 $application->run();
