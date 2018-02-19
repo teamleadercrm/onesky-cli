@@ -27,19 +27,20 @@ class UploadCommand extends Command
 	{
 		$this->initializeClient($input->getOption('key'), $input->getOption('secret'));
 
-		$file_format = $this->config['file_format'];
-		if ($input->getOption('file_format')) {
-			$file_format = $input->getOption('file_format');
+
+		$file_format = $input->getOption('file_format');
+		if (is_null($file_format)) {
+            $this->config['file_format'];
 		}
 
-		$is_keeping_all_strings = $this->config['is_keeping_all_strings'];
-		if ($input->getOption('is_keeping_all_strings')) {
-			$is_keeping_all_strings = $input->getOption('is_keeping_all_strings');
+		$is_keeping_all_strings = $input->getOption('is_keeping_all_strings');
+		if (is_null($is_keeping_all_strings)) {
+			$is_keeping_all_strings = $this->config['is_keeping_all_strings'];
 		}
 
-		$project_id = $this->config['project_id'];
-		if ($input->getOption('project_id')) {
-			$project_id = $input->getOption('project_id');
+		$project_id = $input->getOption('project_id');
+		if (is_null($project_id)) {
+			$project_id = $this->config['project_id'];
 		}
 
 		$response = $this->client->files('upload', [

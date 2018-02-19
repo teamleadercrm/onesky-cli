@@ -23,10 +23,11 @@ class DownloadCommand extends Command
     {
 		$this->initializeClient($input->getOption('key'), $input->getOption('secret'));
 
-		$project_id = $this->config['project_id'];
-		if ($input->getOption('project_id')) {
-			$project_id = $this->config['project_id'];
-		}
+		$project_id = $input->getOption('project_id');
+		if (is_null($project_id)) {
+            $project_id = $this->config['project_id'];
+
+        }
 
         $response = $this->client->translations('export', [
             'project_id' => (int) $project_id,
