@@ -22,9 +22,9 @@ class DownloadCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
 		$this->initializeClient($input->getOption('key'), $input->getOption('secret'));
-
-		$project_id = $this->config['project_id'];
-		if ($input->getOption('project_id')) {
+        
+        $project_id = $input->getOption('project_id')
+	    if (is_null($project_id)) {
 			$project_id = $this->config['project_id'];
 		}
 
