@@ -16,7 +16,8 @@ class DownloadCommand extends Command
             ->setDescription('Download a translation file from OneSky')
             ->addArgument('locale', InputArgument::REQUIRED, 'Locale')
             ->addArgument('file', InputArgument::REQUIRED, 'File')
-            ->addArgument('source_file_name', InputArgument::REQUIRED, 'Source file name');
+            ->addArgument('source_file_name', InputArgument::REQUIRED, 'Source file name')
+            ->addArgument('file_format', InputArgument::OPTIONAL, 'Output file format');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -28,11 +29,17 @@ class DownloadCommand extends Command
             $project_id = $this->config['project_id'];
         }
 
-        $response = $this->client->translations('export', [
+        $options = [
             'project_id' => (int)$project_id,
             'locale' => $input->getArgument('locale'),
             'source_file_name' => $input->getArgument('source_file_name'),
-        ]);
+        ];
+
+        if ($input->hasOption('file_format')) {
+            $options['file_format'] = $input->getOption('file_format');
+        }
+
+        $response = $this->client->translations('export', $options);
 
         if (!$response) {
             $output->writeln('<error>Empty OneSky response!</error>');
