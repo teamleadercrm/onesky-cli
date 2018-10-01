@@ -9,5 +9,8 @@ COPY . /source
 # Install dependencies
 RUN cd source && composer install
 
+# The project folder
+WORKDIR "/project"
+
 # Run onesky cli command
-ENTRYPOINT ["/source/bin/onesky"]
+ENTRYPOINT ["/source/entrypoint.sh"]
