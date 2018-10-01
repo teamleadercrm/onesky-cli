@@ -10,4 +10,4 @@ COPY . /source
 RUN cd source && composer install
 
 # Run onesky cli command
-CMD ["php", "/source/bin/onesky"]
+ENTRYPOINT ["/source/bin/onesky"]
