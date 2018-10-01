@@ -6,12 +6,18 @@ This project builds a docker image called `teamleader/onesky`. To pull the image
 docker pull teamleader/onesky
 ```
 
+To use it, run the docker container with your current working directory to the `/project` folder.
+
+```bash
+docker run -v $(pwd):/project teamleader/onesky
+```
+
 ## Configuration
 
 Your project needs a `onesky.yml`, file which can be generate:
 
 ```bash
-docker run teamleader/onesky init
+docker run -v $(pwd):/project teamleader/onesky init
 ```
 
 Then edit this file and your api key, secret and project id.
@@ -21,7 +27,7 @@ Then edit this file and your api key, secret and project id.
 You can check all available commands using:
 
 ```bash
-docker run teamleader/onesky list
+docker run -v $(pwd):/projectteamleader/onesky list
 ```
 
 #### Uploading translations
@@ -31,7 +37,7 @@ Arguments:
 - source file name
 
 ```bash
-docker run teamleader/onesky upload nl-BE nl/app.json
+docker run -v $(pwd):/projectteamleader/onesky upload nl-BE nl/app.json
 ```
 
 #### Downloading translations
@@ -42,5 +48,5 @@ Arguments:
 - source file name
 
 ```bash
-docker run teamleader/onesky download fr-BE fr/app.json app.json
+docker run -v $(pwd):/projectteamleader/onesky download fr-BE fr/app.json app.json
 ```
