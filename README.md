@@ -1,15 +1,15 @@
-## Installation
+## Usage
 
-Install globally:
+This project builds a docker image called `teamleader/onesky`. To pull the image on your local machine:
 
 ```bash
-composer global require teamleader/onesky-cli
+docker pull teamleader/onesky
 ```
 
-Or install locally:
+To use it, run the docker container with your current working directory to the `/project` folder.
 
 ```bash
-composer require teamleader/onesky-cli
+docker run -v $(pwd):/project teamleader/onesky
 ```
 
 ## Configuration
@@ -17,7 +17,7 @@ composer require teamleader/onesky-cli
 Your project needs a `onesky.yml`, file which can be generate:
 
 ```bash
-onesky init
+docker run -v $(pwd):/project teamleader/onesky init
 ```
 
 Then edit this file and your api key, secret and project id.
@@ -27,7 +27,7 @@ Then edit this file and your api key, secret and project id.
 You can check all available commands using:
 
 ```bash
-onesky list
+docker run -v $(pwd):/projectteamleader/onesky list
 ```
 
 #### Uploading translations
@@ -37,7 +37,7 @@ Arguments:
 - source file name
 
 ```bash
-onesky upload nl-BE nl/app.json
+docker run -v $(pwd):/projectteamleader/onesky upload nl-BE nl/app.json
 ```
 
 #### Downloading translations
@@ -48,5 +48,5 @@ Arguments:
 - source file name
 
 ```bash
-onesky download fr-BE fr/app.json app.json
+docker run -v $(pwd):/projectteamleader/onesky download fr-BE fr/app.json app.json
 ```
