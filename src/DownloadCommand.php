@@ -29,20 +29,20 @@ class DownloadCommand extends Command
         }
 
         $response = $this->client->translations('export', [
-            'project_id' => (int)$project_id,
+            'project_id' => (int) $project_id,
             'locale' => $input->getArgument('locale'),
             'source_file_name' => $input->getArgument('source_file_name'),
         ]);
 
         if (!$response) {
             $output->writeln('<error>Empty OneSky response!</error>');
-            return;
+            exit(1);
         }
 
         $data = json_decode($response, true);
         if (isset($data['meta']) && $data['meta']['status'] != 201) {
             $output->writeln('<error>' . $data['meta']['message'] . '</error>');
-            return;
+            exit(1);
         }
 
         file_put_contents($input->getArgument('file'), $response);

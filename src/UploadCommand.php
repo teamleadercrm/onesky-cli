@@ -54,7 +54,7 @@ class UploadCommand extends Command
         $data = json_decode($response, true);
         if (isset($data['meta']) && $data['meta']['status'] != 201) {
             $output->writeln('<error>' . $response . '</error>');
-            return;
+            exit(1);
         }
 
         $output->writeln('<info>File uploaded</info>');
