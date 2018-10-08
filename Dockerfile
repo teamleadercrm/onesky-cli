@@ -9,6 +9,9 @@ COPY . /source
 # Install dependencies
 RUN cd source && composer install
 
+# Create binary symlink
+RUN ln -s /source/bin/onesky /bin/onesky && chmod +x /bin/onesky
+
 # The project folder
 WORKDIR "/project"
 
