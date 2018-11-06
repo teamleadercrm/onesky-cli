@@ -14,7 +14,7 @@ docker run -v $(pwd):/project teamleader/onesky
 
 ## Configuration
 
-Your project needs a `onesky.yml`, file which can be generate:
+Your project needs a `onesky.yml`, file which can be generated using:
 
 ```bash
 docker run -v $(pwd):/project teamleader/onesky init
