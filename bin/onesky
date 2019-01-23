@@ -17,4 +17,5 @@ $application->add(new Teamleader\OneSky\InitCommand());
 $application->add(new Teamleader\OneSky\UploadCommand());
 $application->add(new Teamleader\OneSky\DownloadCommand());
 $application->add(new Teamleader\OneSky\MergeCommand());
+$application->add(new Teamleader\OneSky\ListLocaleCommand());
 $application->run();
