@@ -9,18 +9,15 @@
         }
     ],
     "require": {
-        "symfony/console": "^3.2",
         "onesky/api-library-php5": "^1.0",
-        "symfony/yaml": "^3.2"
+        "symfony/console": "^6.0",
+        "symfony/yaml": "^6.0"
     },
     "bin": ["bin/onesky"],
     "autoload": {
         "psr-4": {
             "Teamleader\\OneSky\\": "src/"
         }
-    },
-    "require-dev": {
-        "kherge/box": "^2.7"
     },
     "scripts": {
         "build": "./vendor/bin/box build"

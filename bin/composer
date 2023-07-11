@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+docker run -it --init --rm \
+    --volume $(pwd):/code:delegated \
+    --volume ~/.composer:/root/.composer:cached \
+    --volume ~/.ssh:/root/.ssh:cached \
+    --workdir /code \
+    teamleader/php:8.1-focus-1.1.0 composer $@

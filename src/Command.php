@@ -23,7 +23,7 @@ abstract class Command extends BaseCommand
 	 */
 	protected $client;
 
-	protected function configure()
+	protected function configure(): void
 	{
 		$this
 			->addOption('key', 'k', InputArgument::OPTIONAL,
@@ -35,7 +35,7 @@ abstract class Command extends BaseCommand
 				'Your onesky project_id. Defaults to the value in the onesky.yml file');
 	}
 
-	protected function initialize(InputInterface $input, OutputInterface $output)
+	protected function initialize(InputInterface $input, OutputInterface $output): void
 	{
 		$defaults = [
 			'file_format' => 'HIERARCHICAL_JSON',
