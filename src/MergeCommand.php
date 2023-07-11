@@ -12,7 +12,7 @@ use Teamleader\OneSky\Merge\TranslationMerger;
 
 class MergeCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this
@@ -23,12 +23,12 @@ class MergeCommand extends Command
                 'f',
                 InputArgument::OPTIONAL,
                 'the format in which input and ouput translations are formatted (JSON or PHP)',
-                Format::FORMAT_PHP
+                Format::FORMAT_PHP,
             )
             ->addArgument('files', InputArgument::IS_ARRAY, 'list of PHP translation files to merge');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         switch (Format::fromString($input->getOption('format'))) {
             case Format::php():
@@ -41,5 +41,7 @@ class MergeCommand extends Command
 
         $translationMerger = new TranslationMerger($translationFileIoStrategy);
         echo $translationMerger->merge($input->getArgument('files'));
+
+        return self::SUCCESS;
     }
 }

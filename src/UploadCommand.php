@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UploadCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this
@@ -23,10 +23,9 @@ class UploadCommand extends Command
 
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->initializeClient($input->getOption('key'), $input->getOption('secret'));
-
 
         $file_format = $input->getOption('file_format');
         if (is_null($file_format)) {
@@ -44,7 +43,7 @@ class UploadCommand extends Command
         }
 
         $response = $this->client->files('upload', [
-            'project_id' => (int)$project_id,
+            'project_id' => (int) $project_id,
             'file' => $input->getArgument('file'),
             'file_format' => $file_format,
             'locale' => $input->getArgument('locale'),
@@ -54,9 +53,12 @@ class UploadCommand extends Command
         $data = json_decode($response, true);
         if (isset($data['meta']) && $data['meta']['status'] != 201) {
             $output->writeln('<error>' . $response . '</error>');
-            exit(1);
+
+            return self::FAILURE;
         }
 
         $output->writeln('<info>File uploaded</info>');
+
+        return self::SUCCESS;
     }
 }

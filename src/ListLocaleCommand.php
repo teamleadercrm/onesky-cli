@@ -2,13 +2,12 @@
 
 namespace Teamleader\OneSky;
 
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ListLocaleCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this
@@ -16,7 +15,7 @@ class ListLocaleCommand extends Command
             ->setDescription('List the locale enabled in the project');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->initializeClient($input->getOption('key'), $input->getOption('secret'));
 
@@ -43,5 +42,7 @@ class ListLocaleCommand extends Command
         foreach ($data['data'] as $language) {
             $output->writeln($language['code']);
         }
+
+        return self::SUCCESS;
     }
 }

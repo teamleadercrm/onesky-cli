@@ -8,7 +8,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DownloadCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this
@@ -19,7 +19,7 @@ class DownloadCommand extends Command
             ->addArgument('source_file_name', InputArgument::REQUIRED, 'Source file name');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->initializeClient($input->getOption('key'), $input->getOption('secret'));
 
@@ -47,5 +47,7 @@ class DownloadCommand extends Command
 
         file_put_contents($input->getArgument('file'), $response);
         $output->writeln('<info>Created ' . $input->getArgument('file') . '</info>');
+
+        return self::SUCCESS;
     }
 }
